@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Web</title>
+    <link rel="icon" href="requirements/umbrellaIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <!-- Home Page -->
+        <div class="weather">
+            <div class="slogan">
+                <h1>Weather Forecast Website</h1>
+                <section>"Stay ahead of the weather with real-time updates and accurate forecasts. 
+                    Whether you're planning your day or preparing for the week ahead, our weather 
+                    insights keep you informed and ready for anything Mother Nature brings. 
+                    Just search the weather details with a simple query, and get instant results."
+                </section>    
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Enter the city name here"> 
+                <a>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Error Page -->
+        <div class="errBox">
+            <div class="errMsg"></div>
+            <button class="errBoxButton">Go to Home</button>
+        </div>
+
+        <!-- Main Weather UI Page -->
+        <div class="forecast">
+            <!-- Header Part -->
+            <div class="header">
+                <button class="home">Go to Home</button>
+                <div class="mainSearch">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Enter the city name here"> 
+    
+                </div>
+            </div>
+            <!-- Middle Part -->
+            <div class="middle">
+
+                <div class="date"> 
+                    <div class="place"></div>
+                    <div class="time"></div>
+                    <div class="timezonedate"></div>
+                </div>  
+
+                <div class="currWeather">
+
+                    <div class="humidity">
+                        <svg class="humidSvg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.5 -0.5 24 24" height="24" width="24" id="Humidity-Percentage--Streamline-Outlined----Material-Symbols">
+                            <path fill="#000" d="M13.898708333333333 17.010416666666668C14.232208333333334 17.010416666666668 14.514772916666667 16.893643750000003 14.746354166666666 16.660145833333335C14.977935416666666 16.426647916666667 15.09375 16.143125 15.09375 15.809625C15.09375 15.476125000000001 14.976977083333333 15.193560416666667 14.743479166666667 14.961979166666667C14.509981250000001 14.730397916666668 14.226458333333335 14.614583333333334 13.892958333333334 14.614583333333334C13.559458333333334 14.614583333333334 13.276893750000001 14.731356250000001 13.045312500000001 14.964854166666669C12.813731250000002 15.198352083333333 12.697916666666668
+                             15.481875000000002 12.697916666666668 15.815375000000001C12.697916666666668 16.148875 12.814689583333333 16.431439583333333 13.048187500000001 16.663020833333334C13.281685416666667 16.894602083333332 13.565208333333333 17.010416666666668 13.898708333333333 17.010416666666668ZM9.05625 16.866666666666667L14.950000000000001 10.972916666666666L13.943750000000001 9.966666666666667L8.05 15.860416666666667L9.05625 16.866666666666667ZM9.107041666666667 12.21875C9.440541666666668 12.21875 9.723106249999999 12.101977083333333 9.9546875 11.868479166666667C10.18626875 11.634981250000001 10.302083333333334 11.351458333333335 10.302083333333334 
+                             11.017958333333334C10.302083333333334 10.684458333333334 10.185310416666667 10.401893750000001 9.951812499999999 10.170312500000001C9.718314583333335 9.938731250000002 9.434791666666667 9.822916666666668 9.101291666666667 9.822916666666668C8.767791666666666 9.822916666666668 8.485227083333335 9.939689583333333 8.253645833333334 10.173187500000001C8.022064583333334 10.406685416666667 7.90625 10.690208333333333 7.90625 11.023708333333333C7.90625 11.357208333333334 8.023022916666667 11.639772916666667 8.256520833333335 11.871354166666666C8.49001875 12.102935416666666 8.773541666666667 12.21875 9.107041666666667 12.21875ZM11.5 
+                             21.083333333333336C9.311789583333333 21.083333333333336 7.486979166666667 20.33262291666667 6.025520833333333 18.83125C4.5640625 17.329877083333333 3.8333333333333335 15.461127083333334 3.8333333333333335 13.225000000000001C3.8333333333333335 11.62779375 4.468229166666666 9.890814583333334 5.738020833333334 8.014062500000001C7.0078125 6.137310416666667 8.92845625 4.104862708333334 11.5 1.9166666666666667C14.071543750000002 4.104862708333334 15.9921875 6.137310416666667 17.261979166666666 8.014062500000001C18.531770833333333 9.890814583333334 19.166666666666668 11.62779375 19.166666666666668 13.225000000000001C19.166666666666668 
+                             15.461127083333334 18.4359375 17.329877083333333 16.974479166666665 18.83125C15.513020833333334 20.33262291666667 13.688210416666667 21.083333333333336 11.5 21.083333333333336ZM11.5 19.645833333333336C13.288872916666667 19.645833333333336 14.774289583333335 19.034895833333334 15.956249999999999 17.813020833333333C17.138210416666666 16.591145833333336 17.729166666666668 15.05925 17.729166666666668 13.217333333333334C17.729166666666668 11.960622916666669 17.198106250000002 10.529687500000001 16.1359375 8.924479166666668C15.073768750000001 7.319270833333333 13.52845625 5.6222062500000005 11.5 3.8333333333333335C9.47154375 5.6222062500000005 
+                             7.92623125 7.319270833333333 6.8640625 8.924479166666668C5.8018937500000005 10.529687500000001 5.270833333333334 11.960622916666669 5.270833333333334 13.217333333333334C5.270833333333334 15.05925 5.8617895833333336 16.591145833333336 7.04375 17.813020833333333C8.225710416666667 19.034895833333334 9.711127083333334 19.645833333333336 11.5 19.645833333333336Z" stroke-width="1"></path>
+                        </svg>
+                        <p class="humidValue"></p>
+                        <p class="humidText">Humidity</p>
+                    </div>
+
+                    <div class="windspeed">
+                        <i class="fa-solid fa-wind"></i>
+                        <p class="speed"> km/h</p>
+                        <p class="windText">Wind Speed</p>
+                    </div>
+
+                    
+                    <div class="minTemp">
+                        <svg class="minTempIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.5 -0.5 24 24" height="24" width="24" id="Thermometer-Minus--Streamline-Outlined----Material-Symbols">
+                            <path fill="#000" d="M13.416858333333334 7.427083333333334V5.989583333333334H21.083525V7.427083333333334H13.416858333333334ZM7.666858333333333 20.125C6.460460416666667 20.125 5.432168750000001 19.699835416666666 4.581978541666667 18.849458333333335C3.7316158333333336 17.999272916666666 3.306436875 16.97098125 3.306436875 15.764583333333333C3.306436875 14.98033125 3.498103541666667 14.24921875 3.881436875000001 13.571197916666668C4.264770208333333 12.893177083333333 4.791858333333334 12.34654375 5.462691666666666 11.93125V5.079166666666667C5.462691666666666 4.466949791666666 5.6764 3.9464981249999997 6.103816666666667 3.517802083333333C6.531377083333333 3.0892689583333333 7.050506250000001 2.875 7.661108333333334 2.875C8.271902083333334 2.875 8.792900000000001 3.0892689583333333 9.22415 3.517802083333333C9.6554 3.9464981249999997 9.871025000000001 4.466949791666666 9.871025000000001 5.079166666666667V11.93125C10.541858333333334 12.34654375 11.068941666666667 12.893177083333333 11.452275 13.571197916666668C11.835608333333333 14.24921875 12.027275000000001 14.98033125 12.027275000000001 15.764583333333333C12.027275000000001 16.97098125 11.602158333333334 17.999272916666666 10.751972916666666 18.849458333333335C9.901595833333333 19.699835416666666 8.87325625 20.125 7.666858333333333 20.125ZM4.743936875 15.764583333333333H10.589775000000001C10.589775000000001 15.157622916666666 10.446025 14.594602083333335 10.158525 14.075520833333334C9.871025000000001 13.556439583333333 9.45573125 13.177083333333334 8.912691666666667 12.9375L8.433525000000001 12.721875V5.079166666666667C8.433525000000001 4.861960416666666 8.36006875 4.679862708333333 8.213108333333334 4.532916666666667C8.066147916666667 4.385970625000001 7.884064583333334 4.3125 7.666858333333333 4.3125C7.4496520833333335 4.3125 7.26756875 4.385970625000001 7.120608333333334 4.532916666666667C6.973647916666667 4.679862708333333 6.900191666666666 4.861960416666666 6.900191666666666 5.079166666666667V12.721875L6.421025 12.9375C5.877985416666666 13.177083333333334 5.462691666666666 13.557158333333334 5.175191666666667 14.077677083333334C4.887691666666667 14.598387500000001 4.743936875 15.160689583333335 4.743936875 15.764583333333333Z" stroke-width="1"></path>
+                          </svg>
+                          <p class="minVal"></p>
+                          <p class="minText">Min. Temp</p>  
+                    </div>
+
+                    <div class="maxTemp">
+                        <svg class="maxTempIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.5 -0.5 24 24" height="24" width="24" id="Thermometer-Add--Streamline-Outlined----Material-Symbols">
+                            <path fill="#000" d="M16.531441666666666 10.541666666666668V7.427083333333334H13.416858333333334V5.989583333333334H16.531441666666666V2.875H17.968941666666666V5.989583333333334H21.083525V7.427083333333334H17.968941666666666V10.541666666666668H16.531441666666666ZM7.666858333333333 20.125C6.460460416666667 20.125 5.432168750000001 19.699835416666666 4.581978541666667 18.849458333333335C3.7316158333333336 17.999272916666666 3.306436875 16.97098125 3.306436875 15.764583333333333C3.306436875 14.98033125 3.498103541666667 14.24921875 3.881436875000001 13.571197916666668C4.264770208333333 12.893177083333333 4.791858333333334 12.34654375 5.462691666666666 11.93125V5.079166666666667C5.462691666666666 4.466949791666666 5.6764 3.9464981249999997 6.103816666666667 3.517802083333333C6.531377083333333 3.0892689583333333 7.050506250000001 2.875 7.661108333333334 2.875C8.271902083333334 2.875 8.792900000000001 3.0892689583333333 9.22415 3.517802083333333C9.6554 3.9464981249999997 9.871025000000001 4.466949791666666 9.871025000000001 5.079166666666667V11.93125C10.541858333333334 12.34654375 11.068941666666667 12.893177083333333 11.452275 13.571197916666668C11.835608333333333 14.24921875 12.027275000000001 14.98033125 12.027275000000001 15.764583333333333C12.027275000000001 16.97098125 11.602158333333334 17.999272916666666 10.751972916666666 18.849458333333335C9.901595833333333 19.699835416666666 8.87325625 20.125 7.666858333333333 20.125ZM6.900191666666666 9.846875H8.433525000000001V5.079166666666667C8.433525000000001 4.861960416666666 8.36006875 4.679862708333333 8.213108333333334 4.532916666666667C8.066147916666667 4.385970625000001 7.884064583333334 4.3125 7.666858333333333 4.3125C7.4496520833333335 4.3125 7.26756875 4.385970625000001 7.120608333333334 4.532916666666667C6.973647916666667 4.679862708333333 6.900191666666666 4.861960416666666 6.900191666666666 5.079166666666667V9.846875Z" stroke-width="1"></path>
+                          </svg>
+                        <p class="maxVal"></p>
+                        <p class="maxText">Max Temp</p>  
+                    </div>
+
+                    <div class="uv">
+                        <?xml version="1.0" ?><svg class="uvIcon"  data-name="Layer 1" id="Layer_1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#efcc00;}.cls-2{fill:none;stroke:#efcc00;stroke-linecap:round;stroke-miterlimit:10;stroke-width:3px;}.cls-3{fill:#fff;}</style></defs><title/><circle class="cls-1" cx="32" cy="32" r="17"/><line class="cls-2" x1="32" x2="32" y1="5" y2="11"/><line class="cls-2" x1="32" x2="32" y1="53" y2="59"/><line class="cls-2" x1="59" x2="53" y1="32" y2="32"/><line class="cls-2" x1="11" x2="5" y1="32" y2="32"/><line class="cls-2" x1="51.09" x2="46.85" y1="12.91" y2="17.15"/><line class="cls-2" x1="17.15" x2="12.91" y1="46.85" y2="51.09"/><line class="cls-2" x1="51.09" x2="46.85" y1="51.09" y2="46.85"/><line class="cls-2" x1="17.15" x2="12.91" y1="17.15" y2="12.91"/><path class="cls-3" d="M24.79,27.75V33.7c0,1.78.67,2.68,1.87,2.68s1.9-.86,1.9-2.68V27.75h2.33v5.79c0,3.19-1.61,4.7-4.3,4.7s-4.14-1.44-4.14-4.73V27.75Z"/><path class="cls-3" d="M35.35,38.08,32,27.75H34.6l1.26,4.37c.35,1.23.67,2.41.92,3.69h0c.26-1.24.58-2.47.93-3.65l1.32-4.41h2.48L38.07,38.08Z"/>
+                        </svg>
+                        <p class="uvVal"></p>
+                        <p class="uvText">UV Index</p>
+                    </div>
+
+                    <div class="pressure">
+                        <svg class="pressureIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g data-name="65.Weather"><path d="M12 24a12 12 0 1 1 12-12 12.013 12.013 0 0 1-12 12zm0-22a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2z"/><path d="M12 20a4.987 4.987 0 0 1-2.921-9.038L10.141 4h3.718l1.062 6.962A4.987 4.987 0 0 1 12 20zm-.141-14-.942 6.178-.414.241A2.968 2.968 0 0 0 9 15a3 3 0 0 0 6 0 2.968 2.968 0 0 0-1.5-2.581l-.414-.241L12.141 6z"/><path d="M8 14h8v2H8z"/></g>
+                        </svg>
+                        <p class="pressureVal"></p>
+                        <p class="pressureText">Pressure</p>
+                    </div>
+                    
+                    <div class="mainCondition">
+                        <div class="condition">
+                            <img src="/requirements/static/clear-day.svg"  class="clearDay">
+                            <img src="/requirements/static/clear-night.svg"  class="clearNight">
+                            <img src="/requirements/static/cloudy-day.svg"  class="cloudyDay">
+                            <img src="/requirements/static/cloudy-night.svg" class="cloudyNight">
+                            <img src="/requirements/static/rainy-7.svg"  class="rainy">
+                            <img src="/requirements/static/snowy-6.svg"  class="snowy">
+                            <img src="/requirements/static/thunder.svg"  class="thunder">
+                            <img src="/requirements/static/cloudy.svg" class="atmospheric">
+                        </div>
+                        <div class="conditionText">
+                            
+                        </div>
+                    </div>
+
+                    <div class="mainTemp">
+                        <div class="totalTemp">
+                            <div class="currentTemp">
+                                
+                            </div>
+                            <div class="feelsLikeTemp">
+                                <span class="feelsLikeText">Feels Like : </span>
+                                <span class="feelsLikeVal"> </span>
+                            </div>
+                        </div>
+
+                        <div class="sunInfo">
+                            <div class="sunrise">
+                                <?xml version="1.0" ?><svg class="sunriseIcon" data-name="Layer 1" id="Layer_1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#efcc00;}.cls-2,.cls-3{fill:none;stroke-linecap:round;stroke-miterlimit:10;stroke-width:3px;}.cls-2{stroke:#efcc00;}.cls-3{stroke:#0baeff;}</style></defs><title/><path class="cls-1" d="M15,36a17,17,0,0,1,34,0"/><line class="cls-2" x1="32" x2="32" y1="9" y2="15"/><line class="cls-2" x1="59" x2="53" y1="36" y2="36"/><line class="cls-2" x1="11" x2="5" y1="36" y2="36"/><line class="cls-2" x1="51.09" x2="46.85" y1="16.91" y2="21.15"/><line class="cls-2" x1="17.15" x2="12.91" y1="21.15" y2="16.91"/><line class="cls-3" x1="5.5" x2="58.5" y1="37.5" y2="37.5"/><line class="cls-3" x1="41.5" x2="54.5" y1="43.5" y2="43.5"/><line class="cls-3" x1="9.5" x2="22.5" y1="43.5" y2="43.5"/><line class="cls-2" x1="32" x2="32" y1="55.74" y2="43.74"/><polyline class="cls-2" points="36.24 47.24 32 43 27.76 47.24"/></svg>
+                                <div class="sunriseDetail">
+                                    <div class="sunriseText">Sunrise</div>
+                                    <div class="sunriseTime"></div>
+                                </div>
+                            </div>
+
+                            <div class="sunset">
+                                <?xml version="1.0" ?><svg class="sunsetIcon" data-name="Layer 1" id="Layer_1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#efcc00;}.cls-2,.cls-3{fill:none;stroke-linecap:round;stroke-miterlimit:10;stroke-width:3px;}.cls-2{stroke:#efcc00;}.cls-3{stroke:#0baeff;}</style></defs><title/><path class="cls-1" d="M15,36a17,17,0,0,1,34,0"/><line class="cls-2" x1="32" x2="32" y1="9" y2="15"/><line class="cls-2" x1="59" x2="53" y1="36" y2="36"/><line class="cls-2" x1="11" x2="5" y1="36" y2="36"/><line class="cls-2" x1="51.09" x2="46.85" y1="16.91" y2="21.15"/><line class="cls-2" x1="17.15" x2="12.91" y1="21.15" y2="16.91"/><line class="cls-3" x1="5.5" x2="58.5" y1="37.5" y2="37.5"/><line class="cls-3" x1="39.5" x2="54.5" y1="43.5" y2="43.5"/><line class="cls-3" x1="9.5" x2="24.5" y1="43.5" y2="43.5"/><line class="cls-2" x1="32" x2="32" y1="42" y2="54"/><polyline class="cls-2" points="36.24 50.5 32 54.74 27.76 50.5"/></svg>
+                                <div class="sunsetDetail">
+                                    <div class="sunsetText">Sunset</div>
+                                    <div class="sunsetTime"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Footer Part -->
+            <div class="footer">
+                <div class="futureForecast">
+                    <h1 class="futureHeading">5 Days Forecast</h1>
+                    <div class="futureDays">
+                        <div class="day1">
+                            <div class="futureConditionDay1">
+                                <img src="/requirements/static/clear-day.svg"  class="clearDay-1">
+                                <img src="/requirements/static/clear-night.svg"  class="clearNight-1">
+                                <img src="/requirements/static/cloudy-day.svg"  class="cloudyDay-1">
+                                <img src="/requirements/static/cloudy-night.svg" class="cloudyNight-1">
+                                <img src="/requirements/static/rainy-7.svg"  class="rainy-1">
+                                <img src="/requirements/static/snowy-6.svg"  class="snowy-1">
+                                <img src="/requirements/static/thunder.svg"  class="thunder-1">
+                                <img src="/requirements/static/cloudy.svg" class="atmospheric-1">
+                            </div>
+                            <div class="futureDetailsDay1">
+                                <p class="futureWeekDay1"></p>
+                                <div class="futureDay1Val"></div>
+                            </div>
+                        </div>
+                        <div class="day2">
+                            <div class="futureConditionDay2">                  
+                                <img src="/requirements/static/clear-day.svg"  class="clearDay-2">
+                                <img src="/requirements/static/clear-night.svg"  class="clearNight-2">
+                                <img src="/requirements/static/cloudy-day.svg"  class="cloudyDay-2">
+                                <img src="/requirements/static/cloudy-night.svg" class="cloudyNight-2">
+                                <img src="/requirements/static/rainy-7.svg"  class="rainy-2">
+                                <img src="/requirements/static/snowy-6.svg"  class="snowy-2">
+                                <img src="/requirements/static/thunder.svg"  class="thunder-2">
+                                <img src="/requirements/static/cloudy.svg" class="atmospheric-2">
+                            </div>
+                            <div class="futureDetailsDay2">
+                                <p class="futureWeekDay2"></p>
+                                <div class="futureDay2Val"></div>
+                            </div>
+                        </div>
+                        <div class="day3">
+                            <div class="futureConditionDay3">    
+                                <img src="/requirements/static/clear-day.svg"  class="clearDay-3">
+                                <img src="/requirements/static/clear-night.svg"  class="clearNight-3">
+                                <img src="/requirements/static/cloudy-day.svg"  class="cloudyDay-3">
+                                <img src="/requirements/static/cloudy-night.svg" class="cloudyNight-3">
+                                <img src="/requirements/static/rainy-7.svg"  class="rainy-3">
+                                <img src="/requirements/static/snowy-6.svg"  class="snowy-3">
+                                <img src="/requirements/static/thunder.svg"  class="thunder-3">
+                                <img src="/requirements/static/cloudy.svg" class="atmospheric-3">
+                            </div>
+                            <div class="futureDetailsDay3">
+                                <p class="futureWeekDay3"></p>
+                                <div class="futureDay3Val"></div>
+                            </div>
+                        </div>
+                        <div class="day4">
+                            <div class="futureConditionDay4">                              
+                                <img src="/requirements/static/clear-day.svg"  class="clearDay-4">
+                                <img src="/requirements/static/clear-night.svg"  class="clearNight-4">
+                                <img src="/requirements/static/cloudy-day.svg"  class="cloudyDay-4">
+                                <img src="/requirements/static/cloudy-night.svg" class="cloudyNight-4">
+                                <img src="/requirements/static/rainy-7.svg"  class="rainy-4">
+                                <img src="/requirements/static/snowy-6.svg"  class="snowy-4">
+                                <img src="/requirements/static/thunder.svg"  class="thunder-4">
+                                <img src="/requirements/static/cloudy.svg" class="atmospheric-4">
+                            </div>
+                            <div class="futureDetailsDay4">
+                                <p class="futureWeekDay4"></p>
+                                <div class="futureDay4Val"></div>
+                            </div>
+                        </div>
+                        <div class="day5">
+                            <div class="futureConditionDay5">            
+                                <img src="/requirements/static/clear-day.svg"  class="clearDay-5">
+                                <img src="/requirements/static/clear-night.svg"  class="clearNight-5">
+                                <img src="/requirements/static/cloudy-day.svg"  class="cloudyDay-5">
+                                <img src="/requirements/static/cloudy-night.svg" class="cloudyNight-5">
+                                <img src="/requirements/static/rainy-7.svg"  class="rainy-5">
+                                <img src="/requirements/static/snowy-6.svg"  class="snowy-5">
+                                <img src="/requirements/static/thunder.svg"  class="thunder-5">
+                                <img src="/requirements/static/cloudy.svg" class="atmospheric-5">
+                            </div>
+                            <div class="futureDetailsDay5">
+                                <p class="futureWeekDay5"></p>
+                                <div class="futureDay5Val"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
